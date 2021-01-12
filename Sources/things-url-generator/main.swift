@@ -19,37 +19,33 @@ private struct StandardErrorOutputStream: TextOutputStream {
     }
 }
 
-struct AddProject: ParsableCommand {
+struct ThingsUrlGenerator: ParsableCommand {
     static let configuration = CommandConfiguration(
         abstract: "Generate add-project url from a markdown file",
+        discussion: "Command receives data from the stdin channel and sends Things URL to stdout",
         version: "0.0.1"
     )
 
-    @Argument(help: "Path to markdown tasks file")
-    var file: String
-
     mutating func run() throws {
-        let file = try String(contentsOfFile: self.file)
-        var lines = file.components(separatedBy: "\n")
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-        guard !lines.isEmpty else {
-            print("empty file given", to: &stdErr)
-            throw ExitCode.failure
-        }
-
-        var title = lines[0]
-        guard title.deletingPrefix("# ") else {
-            print("title should begin with #", to: &stdErr)
-            throw ExitCode.failure
-        }
-        lines = Array(lines.dropFirst())
-
+        var title: String?
         var todo = [String]()
-        for line in lines {
-            var line = line
+        while var line = readLine()?.trimmingCharacters(in: .whitespaces) {
+            if line.isEmpty {
+                if title != nil, !todo.isEmpty {
+                    break
+                }
+                continue
+            }
+            if title == nil {
+                guard line.deletingPrefix("# ") else {
+                    print("title should begin with #", to: &stdErr)
+                    throw ExitCode.failure
+                }
+                title = line
+                continue
+            }
             guard line.deletingPrefix("- [ ]") else {
-                print("title should begin with #", to: &stdErr)
+                print("todo item should begin with - [ ]", to: &stdErr)
                 throw ExitCode.failure
             }
             todo.append(line)
@@ -83,4 +79,4 @@ private extension String {
     }
 }
 
-AddProject.main()
+ThingsUrlGenerator.main()
