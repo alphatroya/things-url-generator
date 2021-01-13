@@ -22,7 +22,16 @@ private struct StandardErrorOutputStream: TextOutputStream {
 struct ThingsUrlGenerator: ParsableCommand {
     static let configuration = CommandConfiguration(
         abstract: "Generate add-project url from a markdown file",
-        discussion: "Command receives data from the stdin channel and sends Things URL to stdout",
+        discussion: """
+        Command receives data from the stdin channel and sends add-project Things deeplink URL to stdout.
+
+        EXAMPLE:
+        echo '# Test project\\n- [ ] first item\\n- [ ] second item' | things-url-generator
+        'things:///add-project?title=Test%20project&to-dos=%20first%20item&reveal=true'
+
+        By opening that link, a new project named "Test project" will be added and revealed in the Things app.
+        The created project will contain two to-do items.
+        """,
         version: "0.0.1"
     )
 
