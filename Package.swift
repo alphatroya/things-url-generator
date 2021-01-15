@@ -14,5 +14,9 @@ let package = Package(
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
+        .testTarget(
+            name: "thingsTests",
+            dependencies: ["things-url-generator"]
+            ),
     ]
 )

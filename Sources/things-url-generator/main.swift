@@ -1,6 +1,6 @@
 //
 // Things URL generator
-// 2020 Alexey Korolev <alphatroya@gmail.com>
+// 2021 Alexey Korolev <alphatroya@gmail.com>
 //
 
 import ArgumentParser
@@ -60,16 +60,20 @@ struct ThingsUrlGenerator: ParsableCommand {
             todo.append(line)
         }
 
+        guard title != nil else {
+            print("empty buffer passed to stdin", to: &stdErr)
+            throw ExitCode.failure
+        }
+
         var components = URLComponents()
         components.scheme = "things"
         components.host = ""
         components.path = "/add-project"
-        let query = [
-            URLQueryItem(name: "title", value: title),
-            URLQueryItem(name: "to-dos", value: todo.joined(separator: "\n")),
-            URLQueryItem(name: "reveal", value: "true"),
-        ]
-
+        var query = [URLQueryItem(name: "title", value: title)]
+        if !todo.isEmpty {
+            query.append(URLQueryItem(name: "to-dos", value: todo.joined(separator: "\n")))
+        }
+        query.append(URLQueryItem(name: "reveal", value: "true"))
         components.queryItems = query
 
         if let result = components.string {
