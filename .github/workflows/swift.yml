@@ -18,9 +18,14 @@ jobs:
         swift test
 
   docker:
-    name: 'Hello World'
-    description: 'Greet someone and record the time'
-    runs:
-      using: 'docker'
-      image: 'Dockerfile'
+    name: 'Launch Linux unit tests'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Launch tests
+        run: |
+          docker build . -t things-url-tests
+          docker run --rm -it things-url-tests
 
