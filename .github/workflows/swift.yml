@@ -27,5 +27,5 @@ jobs:
       - name: Launch tests
         run: |
           docker build . -t things-url-tests
-          docker run --rm -it things-url-tests
+          docker run --rm -t things-url-tests
 
