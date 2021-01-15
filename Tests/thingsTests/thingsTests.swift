@@ -18,7 +18,7 @@ final class thingsTests: XCTestCase {
     ]
 
     func testSuccessOneTodo() throws {
-        try XCTAssertEqual(output(for: "# Foo\n- [ ] First"), "things:///add-project?title=Foo&to-dos=%20First&reveal=true2")
+        try XCTAssertEqual(output(for: "# Foo\n- [ ] First"), "things:///add-project?title=Foo&to-dos=%20First&reveal=true")
     }
 
     func testSuccessTwoTodo() throws {
