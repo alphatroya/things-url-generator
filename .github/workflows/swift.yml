@@ -2,7 +2,7 @@ name: Swift
 on: [push]
 jobs:
   test:
-    name: Launch swift test
+    name: '[MacOS] Launch tests'
     runs-on: macos-latest
 
     steps:
@@ -18,7 +18,7 @@ jobs:
         swift test
 
   docker:
-    name: 'Launch Linux unit tests'
+    name: '[Ubuntu] Launch tests'
     runs-on: ubuntu-latest
 
     steps:
