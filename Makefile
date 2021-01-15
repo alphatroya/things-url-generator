@@ -30,7 +30,7 @@ project:
 
 ## fmt: Launch swift files code formatter
 fmt:
-	mint run swiftformat swiftformat Sources
+	mint run swiftformat swiftformat Sources Tests
 
 ## help: Prints help message
 help:
