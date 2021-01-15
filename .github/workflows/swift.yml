@@ -16,3 +16,11 @@ jobs:
     - name: Launch tests
       run: |
         swift test
+
+  docker:
+    name: 'Hello World'
+    description: 'Greet someone and record the time'
+    runs:
+      using: 'docker'
+      image: 'Dockerfile'
+
