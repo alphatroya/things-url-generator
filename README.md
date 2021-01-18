@@ -1,6 +1,6 @@
 # things-url-generator
 
-A tool to generate a new [Things](https://culturedcode.com/things) projects deeplink URL from Markdown checklists.
+A tool for generating a new [Things](https://culturedcode.com/things) projects deeplink URL from Markdown checklists.
 
 | Markdown | Things |
 | :-------------: | :------:|
