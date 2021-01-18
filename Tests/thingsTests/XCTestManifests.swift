@@ -10,6 +10,9 @@ extension thingsTests {
         ("testFailureWithoutTitle", testFailureWithoutTitle),
         ("testSuccessOneTodo", testSuccessOneTodo),
         ("testSuccessOnlyTitle", testSuccessOnlyTitle),
+        ("testSuccessTitleWithDescription", testSuccessTitleWithDescription),
+        ("testSuccessTitleWithDescriptionMultiline", testSuccessTitleWithDescriptionMultiline),
+        ("testSuccessTitleWithDescriptionMultilineWithNotes", testSuccessTitleWithDescriptionMultilineWithNotes),
         ("testSuccessTwoTodo", testSuccessTwoTodo),
     ]
 }

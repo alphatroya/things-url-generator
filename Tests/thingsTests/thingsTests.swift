@@ -14,6 +14,9 @@ final class thingsTests: XCTestCase {
         ("testFailureWithoutTitle", testFailureWithoutTitle),
         ("testSuccessOneTodo", testSuccessOneTodo),
         ("testSuccessOnlyTitle", testSuccessOnlyTitle),
+        ("testSuccessTitleWithDescription", testSuccessTitleWithDescription),
+        ("testSuccessTitleWithDescriptionMultiline", testSuccessTitleWithDescriptionMultiline),
+        ("testSuccessTitleWithDescriptionMultilineWithNotes", testSuccessTitleWithDescriptionMultilineWithNotes),
         ("testSuccessTwoTodo", testSuccessTwoTodo),
     ]
 
@@ -41,15 +44,18 @@ final class thingsTests: XCTestCase {
     }
 
     func testSuccessTitleWithDescription() throws {
-        try XCTAssertEqual(output(for: "# Foo\nNotes"),  "things:///add-project?title=Foo&notes=Notes&reveal=true")
+        try XCTAssertEqual(output(for: "# Foo\nNotes"), "things:///add-project?title=Foo&notes=Notes&reveal=true")
     }
 
     func testSuccessTitleWithDescriptionMultiline() throws {
-        try XCTAssertEqual(output(for: "# Foo\nNotes\nSecondLine"),  "things:///add-project?title=Foo&notes=Notes%0ASecondLine&reveal=true")
+        try XCTAssertEqual(output(for: "# Foo\nNotes\nSecondLine"), "things:///add-project?title=Foo&notes=Notes%0ASecondLine&reveal=true")
     }
 
     func testSuccessTitleWithDescriptionMultilineWithNotes() throws {
-        try XCTAssertEqual(output(for: "# Foo\nNotes\nSecondLine\n- [ ] 1\n- [ ] 2"),  "things:///add-project?title=Foo&notes=Notes%0ASecondLine&to-dos=%201%0A%202&reveal=true")
+        try XCTAssertEqual(
+            output(for: "# Foo\nNotes\nSecondLine\n- [ ] 1\n- [ ] 2"),
+            "things:///add-project?title=Foo&notes=Notes%0ASecondLine&to-dos=%201%0A%202&reveal=true"
+        )
     }
 
     // MARK: Private
