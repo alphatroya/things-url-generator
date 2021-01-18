@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "things-url-generator",
+    products: [
+        .executable(name: "things-url-generator", targets: ["things-url-generator"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.1"),
     ],
